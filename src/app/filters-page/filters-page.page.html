@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar class="ion-padding-horizontal">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/drinks" color="dark" text="" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+    <h2 class="filters-page__header">Filters</h2>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-padding-horizontal">
+    <ion-row>
+      <ion-col>
+
+        <div *ngIf="!isLoading; else loading">
+          <ion-list *ngIf="filters; else empty">
+            <ion-item *ngFor="let filter of filters">
+              <ion-label>{{filter.strCategory}}</ion-label>
+              <ion-checkbox color="dark" slot="end" [(ngModel)]="filter.checked"></ion-checkbox>
+            </ion-item>
+          </ion-list>
+
+          <ng-template #empty>
+            <div class="ion-text-center filters-page__sub-text">Where are filters?</div>
+          </ng-template>
+        </div>
+
+        <ng-template #loading>
+          <ion-progress-bar color="dark" type="indeterminate"></ion-progress-bar>
+        </ng-template>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="ion-padding">
+    <ion-button (click)="onApply()" [disabled]="isDisableBtn" expand="full" color="dark">Apply</ion-button>
+  </ion-toolbar>
+</ion-footer>

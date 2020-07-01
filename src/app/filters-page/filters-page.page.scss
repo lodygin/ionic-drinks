@@ -1,0 +1,15 @@
+.filters-page {
+
+  &__header {
+    margin: 0 0 0 40px;
+    height: 70px;
+    font-weight: 500;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__sub-text {
+    color: var(--ion-color-medium);
+  }
+}

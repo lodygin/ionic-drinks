@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar class="ion-padding-horizontal">
+    <h2 class="drinks-page__header">Drinks</h2>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/filters" color="dark" text="" icon="funnel"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-padding-horizontal">
+    <ion-row>
+      <ion-col>
+
+        <div *ngIf="!isLoadingControlSub && !isLoadingControlAnimation; else loading">
+          <div *ngIf="drinks.length; else empty">
+            <ion-list *ngFor="let listDrinks of drinks">
+              <ion-list-header>
+                <ion-label color="medium">
+                  <h3>{{listDrinks.title}}</h3>
+                </ion-label>
+              </ion-list-header>
+              <ion-item lines="none" *ngFor="let drink of listDrinks.list">
+                <ion-avatar slot="start">
+                  <img alt="{{drink.strDrink}}" src="{{drink.strDrinkThumb}}">
+                </ion-avatar>
+                <ion-label>
+                  <h4>{{drink.strDrink}}</h4>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+
+            <ng-template #endList>
+              <p class="ion-text-center ion-padding-vertical drinks-page__sub-text">End of list</p>
+            </ng-template>
+
+            <ion-infinite-scroll *ngIf="currentIdx < maxCategoriesIdx; else endList" (ionInfinite)="getDrinksOnScroll($event)">
+              <ion-infinite-scroll-content
+                  loadingSpinner="dots"
+                  loadingText="Loading more drinks...">
+              </ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+          </div>
+
+          <ng-template #empty>
+            <div class="ion-text-center drinks-page__sub-text">No more drinks</div>
+          </ng-template>
+        </div>
+
+        <ng-template #loading>
+          <ion-progress-bar color="dark" type="indeterminate"></ion-progress-bar>
+        </ng-template>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
