@@ -1,0 +1,7 @@
+{
+  "name": "cocktailDB",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
