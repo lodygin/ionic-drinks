@@ -12,8 +12,8 @@
     <ion-row>
       <ion-col>
 
-        <div *ngIf="!isLoadingControlSub && !isLoadingControlAnimation; else loading">
-          <div *ngIf="drinks.length; else empty">
+        <div *ngIf="drinks.length; else empty">
+          <div *ngIf="!isLoadingControlSub && !isLoadingControlAnimation; else loading">
             <ion-list *ngFor="let listDrinks of drinks">
               <ion-list-header>
                 <ion-label color="medium">
@@ -42,13 +42,13 @@
             </ion-infinite-scroll>
           </div>
 
-          <ng-template #empty>
-            <div class="ion-text-center drinks-page__sub-text">No more drinks</div>
+          <ng-template #loading>
+            <ion-progress-bar color="dark" type="indeterminate"></ion-progress-bar>
           </ng-template>
         </div>
 
-        <ng-template #loading>
-          <ion-progress-bar color="dark" type="indeterminate"></ion-progress-bar>
+        <ng-template #empty>
+          <div class="ion-text-center drinks-page__sub-text">No more drinks</div>
         </ng-template>
 
       </ion-col>
